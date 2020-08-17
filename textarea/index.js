@@ -5,46 +5,78 @@ Component({
    */
   externalClasses: ['textarea-class', 'wrap-class', 'placeholder-class'],
   properties: {
-    value: String, 
-    disabled: Boolean,
-    maxlength: {
+    "value": {
+      type: String,
+      default: ''
+    },
+    "placeholder": {
+      type: String,
+      default: ''
+    },
+    "placeholderStyle": {
+      type: String,
+      default: ''
+    },
+    "disabled": {
+      type: Boolean,
+      default: false
+    },
+    "maxlength": {
       type: Number,
       value: -1
     },
-    "auto-focus": Boolean,
-    focus: Boolean,
-    "auto-height": Boolean,
-    fixed: Boolean,
-    "placeholder-style": String,
-    "textarea-style": String,
-    "virtual-textarea-style": String,
-    placeholder: String,
-    "cursor-spacing": {
+    "focus": {
+      type: Boolean,
+      value: false
+    },
+    "autoHeight": {
+      type: Boolean,
+      value: false
+    },
+    "fixed": {
+      type: Boolean,
+      value: false
+    },
+    "textareaStyle": {
+      type: String,
+      default: ''
+    },
+    "virtualTextareaStyle": {
+      type: String,
+      default: ''
+    },
+    "cursorSpacing": {
       type: Number,
       value: 0
     },
-    cursor: {
+    "cursor": {
       type: Number,
       value: -1
     },
-    "show-confirm-bar": {
-      type: Boolean, 
-      value: true
-    },
-    "show-confirm-bar": {
-      type: Number,
-      value: -1
-    },
-    "selection-end": {
-      type: Number,
-      value: -1
-    },
-    "adjust-position": {
+    "showConfirmBar": {
       type: Boolean,
       value: true
     },
-    "hold-keyboard": Boolean,
-
+    "selectionStart": {
+      type: Number,
+      value: -1
+    },
+    "selectionEnd": {
+      type: Number,
+      value: -1
+    },
+    "adjustPosition": {
+      type: Boolean,
+      value: true
+    },
+    "holdKeyboard": {
+      type: Boolean,
+      value: false
+    },
+    "disableDefaultPadding": {
+      type: Boolean,
+      default: true
+    }
   },
 
   /**
@@ -52,36 +84,43 @@ Component({
    */
   data: {
     showTextArea: false,
-    autoFocus: false
+    autoFocus: false,
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    handleInput(e) {
+    handleInput(event) {
       this.setData({
-        value: e.detail.value
+        value: event.detail.value
       })
-      this.triggerEvent("input", e.detail)
+      this.triggerEvent("input", event.detail)
     },
     handleTap() {
       this.setData({
         showTextArea: true,
-        autoFocus: true
+        autoFocus: true,
       })
     },
-    handleBlur(e) {
+    handleBlur(event) {
       this.setData({
-        showTextArea: false
+        showTextArea: false,
+        autoFocus: false,
       })
-      this.triggerEvent("blur", e.detail)
+      this.triggerEvent("blur", event.detail)
     },
-    handleFocus(e) {
-      this.triggerEvent("focus", e.detail)
+    handleFocus(event) {
+      this.triggerEvent("focus", event.detail)
     },
-    bindkeyboardheightchange(e) {
-      this.triggerEvent("bindkeyboardheightchange", e.detail)
+    handleLineChange(event) {
+      this.triggerEvent("linechange", event.detail)
+    },
+    handleConfirm(event) {
+      this.triggerEvent("confirm", event.detail)
+    },
+    handleKeyboardHeightChange(event) {
+      this.triggerEvent("keyboardheightchange", event.detail)
     }
   }
 })

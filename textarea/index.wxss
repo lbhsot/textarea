@@ -1,19 +1,28 @@
 .wrap {
   position: relative;
   z-index: 1;
+  width: 590rpx;
+  height: 150rpx;
 }
 .placeholder {
   position:absolute;
   top: 0;
   left: 0;
   z-index: -1;
-  color: #bebebe;
+  color: #999;
+  font-size: 30rpx;
+  line-height: 1.4rem;
+  font-weight: 400;
 }
 .textarea, .content {
+  font-size: 30rpx;
+  line-height: 1.4rem;
+  font-weight: 400;
   display: block;
   padding: 0;
   width: auto;
   height: 100%;
   box-sizing: border-box;
   margin: 0;
+  color: #101010;
 }
